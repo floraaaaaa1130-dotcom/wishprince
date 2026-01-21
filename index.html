@@ -29,7 +29,7 @@
             --btn-bg: rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: default; } /* 기본 커서 */
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: default; }
         
         body {
             background-color: var(--bg-color);
@@ -40,6 +40,7 @@
             justify-content: center;
             min-height: 100vh;
             overflow-x: hidden;
+            font-size: 14px;
         }
 
         .container {
@@ -53,14 +54,13 @@
             min-height: 100vh;
         }
 
-        /* --- [NEW] 별가루 효과 스타일 --- */
+        /* 별가루 효과 */
         .sparkle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 4px; height: 4px;
             background-color: var(--main-gold);
             border-radius: 50%;
-            pointer-events: none; /* 클릭 방해 안 하게 */
+            pointer-events: none;
             animation: fall 1s linear forwards;
             box-shadow: 0 0 5px var(--main-gold);
             z-index: 9999;
@@ -70,7 +70,7 @@
             100% { opacity: 0; transform: translateY(30px) scale(0.5); }
         }
 
-        /* --- 로고 애니메이션 --- */
+        /* 로고 애니메이션 */
         #main-logo {
             position: absolute;
             z-index: 100;
@@ -80,14 +80,15 @@
         }
         #main-logo.center {
             top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 80%; max-width: 350px; opacity: 1;
+            width: 70%; max-width: 300px; opacity: 1;
         }
         #main-logo.top {
-            top: 40px; left: 50%; transform: translate(-50%, 0);
-            width: 60%; max-width: 250px; opacity: 1;
+            top: 30px; left: 50%; transform: translate(-50%, 0);
+            width: 45%; max-width: 200px; opacity: 1;
         }
 
-        .content-with-logo { padding-top: 140px; }
+        .content-with-logo { padding-top: 160px; }
+        
         .fade-in { animation: fadeIn 1s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -104,7 +105,7 @@
 
         input[type="text"] {
             background: transparent; border: none; border-bottom: 2px solid var(--sub-gold);
-            color: white; font-size: 1.5rem; text-align: center; padding: 10px;
+            color: white; font-size: 1.3rem; text-align: center; padding: 10px;
             margin: 20px 0; font-family: 'Gowun Batang', serif; width: 80%;
         }
         input:focus { outline: none; border-bottom-color: var(--main-gold); }
@@ -113,7 +114,7 @@
             font-family: 'RoyalTitle', serif;
             background: linear-gradient(45deg, #bfae76, #f1e5ac);
             color: #0a0e17; border: none; padding: 15px 40px;
-            border-radius: 30px; font-size: 1.1rem; font-weight: bold;
+            border-radius: 30px; font-size: 1rem; font-weight: bold;
             cursor: pointer; transition: transform 0.2s; margin-top: 20px;
             box-shadow: 0 0 15px rgba(241, 229, 172, 0.4);
         }
@@ -121,29 +122,30 @@
 
         .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); margin-bottom: 30px; border-radius: 2px; }
         .progress-fill { height: 100%; background: var(--main-gold); width: 0%; transition: width 0.3s ease; }
+        
         .question-text { 
-            font-family: 'CleanBody', serif; font-size: 1.4rem; font-weight: bold; 
-            margin-bottom: 30px; line-height: 1.5; min-height: 80px; 
+            font-family: 'CleanBody', serif; font-size: 1.25rem; font-weight: bold; 
+            margin-bottom: 25px; line-height: 1.5; min-height: 70px; 
         }
         
         .choice-btn {
             width: 100%; background: var(--btn-bg); border: 1px solid var(--sub-gold);
-            color: white; padding: 18px; margin-bottom: 12px;
+            color: white; padding: 16px; margin-bottom: 10px;
             border-radius: 10px; cursor: pointer;
-            font-family: 'CleanBody', serif; font-size: 1.1rem;
+            font-family: 'CleanBody', serif; font-size: 1rem;
             transition: all 0.3s; text-align: left; line-height: 1.4;
         }
         .choice-btn:hover { background: rgba(241, 229, 172, 0.2); transform: translateX(5px); }
 
         .result-card { background: rgba(0, 0, 0, 0.3); border: 1px solid var(--sub-gold); padding: 20px; border-radius: 15px; text-align: center; width: 100%; margin-bottom: 20px; }
-        .result-img { width: 100%; max-width: 300px; border-radius: 10px; margin: 20px 0; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        .result-title { color: var(--main-gold); font-size: 1.5rem; margin-bottom: 10px; }
-        .result-name { font-family: 'RoyalTitle', serif; font-size: 2rem; font-weight: bold; margin-bottom: 20px; }
-        .result-quote { font-family: 'RoyalTitle', serif; font-style: italic; color: #ccc; margin-bottom: 20px; padding: 10px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .result-img { width: 100%; max-width: 280px; border-radius: 10px; margin: 15px 0; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .result-title { color: var(--main-gold); font-size: 1.3rem; margin-bottom: 8px; }
+        .result-name { font-family: 'RoyalTitle', serif; font-size: 1.8rem; font-weight: bold; margin-bottom: 15px; }
+        .result-quote { font-family: 'RoyalTitle', serif; font-style: italic; color: #ccc; margin-bottom: 20px; padding: 10px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 1.1rem; }
         
         .share-btn { 
             background: #1DA1F2; color: white; border: none; padding: 15px 30px; 
-            border-radius: 30px; cursor: pointer; font-size: 1.1rem; margin: 5px; 
+            border-radius: 30px; cursor: pointer; font-size: 1rem; margin: 5px; 
             font-family: 'RoyalTitle', serif; 
             box-shadow: 0 5px 15px rgba(29, 161, 242, 0.4); transition: transform 0.2s;
         }
@@ -153,13 +155,13 @@
     </style>
 </head>
 <body>
-    <audio id="bgm" loop preload="auto">
-        <source src="romancebgm.mp3" type="audio/mp3">
-    </audio>
+    <audio id="bgm" loop preload="auto"><source src="romancebgm.mp3" type="audio/mp3"></audio>
 
-    <audio id="sfx-btn" preload="auto">
-        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_2456453663.mp3" type="audio/mp3">
-    </audio>
+    <audio id="sfx-horse" preload="auto"><source src="./sounds/horse.mp3" type="audio/mp3"></audio>
+    <audio id="sfx-chime" preload="auto"><source src="./sounds/chime.mp3" type="audio/mp3"></audio>
+    <audio id="sfx-page" preload="auto"><source src="./sounds/page.mp3" type="audio/mp3"></audio>
+    <audio id="sfx-mystic" preload="auto"><source src="./sounds/mystic.mp3" type="audio/mp3"></audio>
+    <audio id="sfx-result" preload="auto"><source src="./sounds/tada.mp3" type="audio/mp3"></audio>
 
     <div class="container">
         <div class="music-control" onclick="toggleMusic()">🔊</div>
@@ -168,15 +170,15 @@
 
         <section id="intro" class="active">
             <img src="./images/invitationcard.jpg" alt="NCT WISH 초대장" class="intro-img" onclick="triggerLogoAnimation()">
-            <button class="btn-gold" onclick="triggerLogoAnimation()">출발하기</button>
+            <button class="btn-gold" onclick="triggerLogoAnimation()">초대장 열기</button>
         </section>
 
         <section id="name-input" class="fade-in content-with-logo">
             <h2 style="margin-bottom: 30px; font-weight: normal; font-family:'RoyalTitle', serif;">입장하시겠습니까?</h2>
             <p>초대장에 적힌 이름을 알려주세요.</p>
             <input type="text" id="username" placeholder="시즈니" maxlength="5">
-            <p style="font-size: 0.9rem; opacity: 0.7;">공주님</p>
-            <button class="btn-gold" onclick="playBtnSound(); startGame();">입장하기</button>
+            <p style="font-size: 0.9rem; opacity: 0.7;">________ 공주님</p>
+            <button class="btn-gold" onclick="playSfx('sfx-chime'); startGame();">입장하기</button>
         </section>
 
         <section id="game" class="fade-in content-with-logo">
@@ -187,7 +189,7 @@
 
         <section id="loading" class="fade-in content-with-logo">
             <div style="font-size: 3rem; animation: float 1s infinite;">🔮</div>
-            <p id="loading-text" style="margin-top: 20px; font-size: 1.2rem;">별들이 운명을 점치고 있습니다...</p>
+            <p id="loading-text" style="margin-top: 20px; font-size: 1.1rem;">별들이 운명을 점치고 있습니다...</p>
         </section>
 
         <section id="result" class="fade-in content-with-logo">
@@ -196,10 +198,10 @@
                 <div class="result-name" id="r-name"></div>
                 <img src="" id="r-img" class="result-img">
                 <div class="result-quote" id="r-quote"></div>
-                <div style="line-height: 1.6; word-break: keep-all;" id="r-desc"></div>
+                <div style="line-height: 1.6; word-break: keep-all; font-size: 0.95rem;" id="r-desc"></div>
             </div>
-            <button class="share-btn" onclick="playBtnSound(); shareTwitter();">💌 약혼 발표하기</button>
-            <button class="btn-gold" onclick="playBtnSound(); location.reload()" style="margin-top: 10px; font-size: 0.9rem; padding: 10px 20px;">🔄 다시하기</button>
+            <button class="share-btn" onclick="shareTwitter()">💌 약혼 발표하기</button>
+            <button class="btn-gold" onclick="location.reload()" style="margin-top: 10px; font-size: 0.9rem; padding: 10px 20px;">🔄 다시하기</button>
         </section>
     </div>
 
@@ -231,59 +233,59 @@
                 { text: "톡톡 터지는 캔디가 들어간 에이드", target: "sakuya" }
             ]},
             { q: "Q4. 왈츠 음악이 흐른다. 누군가 당신에게 다가와 손을 내미는데...", a: [
-                { text: "공주님, 저와 춤추는 영광을 드려도 될까요? 거절은 곤란해요.", target: "sion" },
-                { text: "오래 기다렸어. 내 검을 걸고 맹세컨대, 가장 완벽한 춤을 선사할게.", target: "jaehee" },
-                { text: "...손, 잡아도 돼? 네 주위의 마력 흐름이 꽤 따뜻해서.", target: "yushi" },
-                { text: "당신... 파트너 없지? 내가... 흠, 같이 춰 줄 수도 있고.", target: "riku" },
-                { text: "저, 저기...! 제가 춤은 이론으로 완벽하게 마스터했거든요! 하, 한 곡만...!", target: "ryo" },
-                { text: "나 춤 진짜 잘 춰! 나랑 추면 오늘 무도회 1등은 따놓은 당상일 걸?", target: "sakuya" }
+                { text: "“공주님, 저와 춤추는 영광을 드려도 될까요? 거절은 곤란해요."`, target: "sion" },
+                { text: "“오래 기다렸어. 내 검을 걸고 맹세컨대, 가장 완벽한 춤을 선사할게."`, target: "jaehee" },
+                { text: "“...손, 잡아도 돼? 네 주위의 마력 흐름이 꽤 따뜻해서."`, target: "yushi" },
+                { text: "“당신... 파트너 없지? 내가... 흠, 같이 춰 줄 수도 있고."`, target: "riku" },
+                { text: "“저, 저기...! 제가 춤은 이론으로 완벽하게 마스터했거든요! 하, 한 곡만...!"`, target: "ryo" },
+                { text: "“나 춤 진짜 잘 춰! 나랑 추면 오늘 무도회 1등은 따놓은 당상일 걸?"`, target: "sakuya" }
             ]},
             { q: "Q5. 춤을 추던 도중, 실수로 상대방의 발을 밟아버렸다! 그의 반응은?.", a: [
-                { text: "하하, 발 밟는 느낌이 꽤 앙증맞은데요? 한 번 더 밟아볼래요?", target: "sion" },
-                { text: "괜찮아? 안 다쳤어? 구두가 불편한 거 아니야?", target: "jaehee" },
-                { text: "(발을 빤히 보며) ...나쁘지 않아. 오히려 잠이 좀 깨는 것 같네.", target: "yushi" },
-                { text: "악!!! ...아, 아니! 하나도 안 아파!! 진짜야!! 이 정도 느낌도 안 나!", target: "riku" },
-                { text: "히익! 죄송합니다! 제가 리드를 잘못해서 감히 공주님의 발이 제 발등에...!", target: "ryo" },
-                { text: "아야야, 아파라! 발 밟았으니까 공주님이 나 책임져야겠다!", target: "sakuya" }
+                { text: "“하하, 발 밟는 느낌이 꽤 앙증맞은데요? 한 번 더 밟아볼래요?"`, target: "sion" },
+                { text: "“괜찮아? 안 다쳤어? 구두가 불편한 거 아니야?"`, target: "jaehee" },
+                { text: "“...나쁘지 않아. 오히려 잠이 좀 깨는 것 같네."`, target: "yushi" },
+                { text: "“악!!! ...아, 아니! 하나도 안 아파!! 진짜야!! 이 정도 느낌도 안 나!"`, target: "riku" },
+                { text: "“히익! 죄송합니다! 제가 리드를 잘못해서 감히 공주님의 발이 제 발등에...!"`, target: "ryo" },
+                { text: "“아야야, 아파라! 발 밟았으니까 공주님이 나 책임져야겠다!"`, target: "sakuya" }
             ]},
             { q: "Q6. 잠시 쉬는 시간, 발코니에서 바람을 쐬는데 그가 따라왔다. 무슨 이야기를 할까?", a: [
-                { text: "안이 너무 시끄럽지? 난 너랑 단둘이 있고 싶어서 나왔는데.", target: "sion" },
-                { text: "겉옷 가져왔어. 밤바람 차다. 감기 걸리면 큰일 나.", target: "jaehee" },
-                { text: "저기 봐. 오늘 달이 붉어. ...마법 쓰기 딱 좋은 밤이야.", target: "yushi" },
-                { text: "너 혼자 있으면 위험하니까... 그냥 감시하러 온 거야. 착각하지 마.", target: "riku" },
-                { text: "저기... 아까 춤추실 때... 스텝이 정말 완벽하셨어요!", target: "ryo" },
-                { text: "여기서 보니까 성이 장난감 같아! 우리 저기 담장 넘어서 도망갈까?", target: "sakuya" }
+                { text: "“안이 너무 시끄럽지? 난 너랑 단둘이 있고 싶어서 나왔는데."`, target: "sion" },
+                { text: "“겉옷 가져왔어. 밤바람 차다. 감기 걸리면 큰일 나."`, target: "jaehee" },
+                { text: "“저기 봐. 오늘 달이 붉어. ...마법 쓰기 딱 좋은 밤이야."`, target: "yushi" },
+                { text: "“너 혼자 있으면 위험하니까... 그냥 감시하러 온 거야. 착각하지 마."`, target: "riku" },
+                { text: "“저기... 아까 춤추실 때... 스텝이 정말 완벽하셨어요!"`, target: "ryo" },
+                { text: "“여기서 보니까 성이 장난감 같아! 우리 저기 담장 넘어서 도망갈까?"`, target: "sakuya" }
             ]},
             { q: "Q7. 낯선 귀족이 당신에게 무례하게 굴며 곤란하게 만든다. 이때 그가 나타나서 한 행동은?", a: [
-                { text: "귀족의 어깨를 짓누르며 웃는다. '내 손님한테 볼일이 있으신가? 제국을 적으로 돌릴 셈인가 보군.'", target: "sion" },
-                { text: "내 앞을 막아서며 검 손잡이에 손을 올린다. '물러가십시오. 제가 베지 못할 것은 없습니다.'", target: "jaehee" },
-                { text: "손가락을 튕기자 귀족의 발밑에 불길이 치솟는다. '가. 재가 되기 싫으면.'", target: "yushi" },
-                { text: "살벌한 눈빛으로 귀족을 노려본다. '좋은 말로 할 때 그 더러운 손 떼.'", target: "riku" },
-                { text: "차가운 표정으로 안경을 올리며 말한다. '귀족법 제3조, 황실 모독죄로 지금 즉시 체포하겠습니다.'", target: "ryo" },
-                { text: "해맑게 웃으며 귀족의 옷에 포도주를 쏟는다. '아이쿠, 손이 미끄러졌네? 아저씨 옷 갈아입으러 집에 가야겠다!'", target: "sakuya" }
+                { text: "귀족의 어깨를 짓누르며 웃는다. “내 손님한테 볼일이 있으신가? 제국을 적으로 돌릴 셈인가 보군.'", target: "sion" },
+                { text: "내 앞을 막아서며 검 손잡이에 손을 올린다. “물러가십시오. 제가 베지 못할 것은 없습니다.'", target: "jaehee" },
+                { text: "손가락을 튕기자 귀족의 발밑에 불길이 치솟는다. “가. 재가 되기 싫으면.'", target: "yushi" },
+                { text: "살벌한 눈빛으로 귀족을 노려본다. “좋은 말로 할 때 그 더러운 손 떼.'", target: "riku" },
+                { text: "차가운 표정으로 안경을 올리며 말한다. “귀족법 제3조, 황실 모독죄로 지금 즉시 체포하겠습니다.'", target: "ryo" },
+                { text: "해맑게 웃으며 귀족의 옷에 포도주를 쏟는다. “아이쿠, 손이 미끄러졌네? 아저씨 옷 갈아입으러 집에 가야겠다!'", target: "sakuya" }
             ]},
             { q: "Q8. 소동이 끝난 후, 놀란 당신을 달래주는 그의 방식은?", a: [
-                { text: "턱을 들어 눈을 맞춘다. '놀랐어? 이제 내 시야에서 1초도 사라지지 마.'", target: "sion" },
-                { text: "따뜻한 코코아를 건네주며 머리를 쓰다듬어 준다. '많이 놀랐지? 이제 괜찮아. 내가 있잖아.'", target: "jaehee" },
-                { text: "아무 말 없이 내 손을 잡고 손등에 이마를 댄다. '...다시는, 이런 일 없게 할게.'", target: "yushi" },
-                { text: "'...바보야. 그러니까 내가 옆에 붙어있으라고 했잖아.' (귀가 새빨개져서 손을 꽉 잡음)", target: "riku" },
-                { text: "떨리는 목소리로 묻는다. '공주님, 다친 곳은 없으세요? 제가 조금만 더 빨리 왔더라면...'", target: "ryo" },
-                { text: "내 앞에서 우스꽝스러운 춤을 춘다. '누나! 이것 봐! 웃어라 얍! 기분 풀렸지?'", target: "sakuya" }
+                { text: "턱을 들어 눈을 맞춘다. “놀랐어? 이제 내 시야에서 1초도 사라지지 마.'", target: "sion" },
+                { text: "따뜻한 코코아를 건네주며 머리를 쓰다듬어 준다. “많이 놀랐지? 이제 괜찮아. 내가 있잖아.'", target: "jaehee" },
+                { text: "아무 말 없이 내 손을 잡고 손등에 이마를 댄다. “...다시는, 이런 일 없게 할게.'", target: "yushi" },
+                { text: "“...바보야. 그러니까 내가 옆에 붙어있으라고 했잖아.' (귀가 새빨개져서 손을 꽉 잡음)", target: "riku" },
+                { text: "떨리는 목소리로 묻는다. “공주님, 다친 곳은 없으세요? 제가 조금만 더 빨리 왔더라면...'", target: "ryo" },
+                { text: "내 앞에서 우스꽝스러운 춤을 춘다. “누나! 이것 봐! 웃어라 얍! 기분 풀렸지?'", target: "sakuya" }
             ]},
              { q: "Q9. 연회의 하이라이트, 불꽃놀이 시간. 불꽃이 터지는 순간 그가 내게 속삭인 말은?", a: [
-                { text: "'저 불꽃보다 네 눈동자가 더 예뻐. ...알고 있어?'", target: "sion" },
-                { text: "'내년에도, 내후년에도... 이렇게 같이 봤으면 좋겠다.'", target: "jaehee" },
-                { text: "'시간을 멈추는 마법을 알았으면 좋았을 텐데. 지금 이 순간을 영원히 보게.'", target: "yushi" },
-                { text: "'...시끄러워. (잠시 후) ...그래도 너랑 있으니까... 나쁘진 않네.'", target: "riku" },
-                { text: "'...좋아해요. (불꽃 소리에 묻혀서 안 들림) ...아, 아무것도 아니에요!'", target: "ryo" },
-                { text: "'우와! 펑펑 터진다! 내 심장 소리 같지 않아? 들어볼래?'", target: "sakuya" }
+                { text: "“저 불꽃보다 네 눈동자가 더 예뻐. ...알고 있어?'", target: "sion" },
+                { text: "“내년에도, 내후년에도... 이렇게 같이 봤으면 좋겠다.'", target: "jaehee" },
+                { text: "“시간을 멈추는 마법을 알았으면 좋았을 텐데. 지금 이 순간을 영원히 보게.'", target: "yushi" },
+                { text: "“...시끄러워. (잠시 후) ...그래도 너랑 있으니까... 나쁘진 않네.'", target: "riku" },
+                { text: "“...좋아해요. (불꽃 소리에 묻혀서 안 들림) ...아, 아무것도 아니에요!'", target: "ryo" },
+                { text: "“우와! 펑펑 터진다! 내 심장 소리 같지 않아? 들어볼래?'", target: "sakuya" }
             ]},
             { q: "Q10. 갑자기 비가 쏟아진다. 우산은 하나뿐. 어떻게 할까?", a: [
-                { text: "우산을 나에게 씌워주고 본인은 비를 맞는다. '황태자의 어깨는 이럴 때 쓰라고 있는 거야.'", target: "sion" },
-                { text: "망토를 펼쳐 나를 감싸고 뛴다. '조금만 참아. 비 한 방울도 안 맞게 해줄게.'", target: "jaehee" },
-                { text: "손을 휘저어 우리 주변의 빗물을 공중에 멈춘다. '비 안 맞게 마법 걸었어. 천천히 걸어가자.'", target: "yushi" },
-                { text: "겉옷을 벗어 내 머리에 씌워준다. '난 북부 사람이라 추위 안 타! 너나 써!' (사실 추움)", target: "riku" },
-                { text: "우산을 내 손에 쥐여주고 빗속으로 뛰어간다. '저는 괜찮습니다! 먼저 가세요!'", target: "ryo" },
+                { text: "우산을 나에게 씌워주고 본인은 비를 맞는다. “황태자의 어깨는 이럴 때 쓰라고 있는 거야.'", target: "sion" },
+                { text: "망토를 펼쳐 나를 감싸고 뛴다. “조금만 참아. 비 한 방울도 안 맞게 해줄게.'", target: "jaehee" },
+                { text: "손을 휘저어 우리 주변의 빗물을 공중에 멈춘다. “비 안 맞게 마법 걸었어. 천천히 걸어가자.'", target: "yushi" },
+                { text: "겉옷을 벗어 내 머리에 씌워준다. “난 북부 사람이라 추위 안 타! 너나 써!' (사실 추움)", target: "riku" },
+                { text: "우산을 내 손에 쥐여주고 빗속으로 뛰어간다. “저는 괜찮습니다! 먼저 가세요!'", target: "ryo" },
                 { text: "우산을 던져버리고 내 손을 잡고 빗속에서 춤을 춘다. '비 맞으니까 시원하다! 그치 누나?'", target: "sakuya" }
             ]},
              { q: "Q11. 젖은 옷을 말리러 들어온 작은 방. 묘한 정적이 흐르는데...", a: [
@@ -329,12 +331,12 @@
         ];
 
         const results = {
-            sion: { title: "제국의 황태자", name: "아뜰리에 (시온)", quote: "나의 황태자비가 되어줘.", desc: "당신은 능글맞지만 내 여자에게만 따뜻한 제국의 황태자 시온과 운명입니다.", img: "sion.jpg" },
+            sion: { title: "제국의 황태자", name: "아뜰리에 (시온)", quote: "나의 황태자비가 되어줘.", desc: "당신은 능글맞지만 내 여자에게만 따뜻한 제국의 황태자 시온과 운명입니다.", img: "sion.png" },
             jaehee: { title: "기사국의 왕자", name: "포스 (재희)", quote: "당신만을 위해 검을 든 수호자.", desc: "왕관보다 당신의 안전을 택하는 헌신적인 사랑! 재희가 당신의 운명입니다.", img: "jaehee.png" },
-            yushi: { title: "마법국의 왕자", name: "다비 (유우시)", quote: "금지된 마법을 다루는 신비주의자.", desc: "엉뚱하고 조용하지만 엄청난 소유욕의 소유자. 유우시가 당신의 운명입니다.", img: "yushi.jpg" },
-            riku: { title: "북부의 왕자", name: "라일 (리쿠)", quote: "얼어붙은 심장을 가진 지배자.", desc: "겉은 차갑지만 속은 따뜻한 츤데레! 리쿠가 당신의 운명입니다.", img: "riku.jpg" },
-            ryo: { title: "학술국의 왕자", name: "치치 (료)", quote: "당신의 완벽한 설계를 돕는 지략가.", desc: "당신을 오랫동안 짝사랑해온 지성파 왕자님. 료가 당신의 운명입니다.", img: "ryo.jpg" },
-            sakuya: { title: "요정국의 왕자", name: "베티 (사쿠야)", quote: "사랑을 노래하는 봄의 정령.", desc: "매일매일이 축제 같은 삶! 사쿠야가 당신의 운명입니다.", img: "sakuya.jpg" }
+            yushi: { title: "마법국의 왕자", name: "다비 (유우시)", quote: "금지된 마법을 다루는 신비주의자.", desc: "엉뚱하고 조용하지만 엄청난 소유욕의 소유자. 유우시가 당신의 운명입니다.", img: "yushi.png" },
+            riku: { title: "북부의 왕자", name: "라일 (리쿠)", quote: "얼어붙은 심장을 가진 지배자.", desc: "겉은 차갑지만 속은 따뜻한 츤데레! 리쿠가 당신의 운명입니다.", img: "riku.png" },
+            ryo: { title: "학술국의 왕자", name: "치치 (료)", quote: "당신의 완벽한 설계를 돕는 지략가.", desc: "당신을 오랫동안 짝사랑해온 지성파 왕자님. 료가 당신의 운명입니다.", img: "ryo.png" },
+            sakuya: { title: "요정국의 왕자", name: "베티 (사쿠야)", quote: "사랑을 노래하는 봄의 정령.", desc: "매일매일이 축제 같은 삶! 사쿠야가 당신의 운명입니다.", img: "sakuya.png" }
         };
 
         let currentQ = 0;
@@ -353,17 +355,17 @@
             else { bgm.pause(); document.querySelector('.music-control').innerText = '🔇'; }
         }
 
-        // [NEW] 버튼 클릭 효과음 재생 함수
-        function playBtnSound() {
-            const audio = document.getElementById('sfx-btn');
+        // [NEW] 상황별 효과음 재생 함수 (ID를 받아서 재생)
+        function playSfx(id) {
+            const audio = document.getElementById(id);
             if(audio) {
-                audio.currentTime = 0; // 연속 클릭 시 처음부터 재생
+                audio.currentTime = 0;
                 audio.play().catch(e => console.log("효과음 재생 차단됨"));
             }
         }
 
         function triggerLogoAnimation() {
-            playBtnSound(); // 효과음 추가
+            playSfx('sfx-horse'); // 말발굽 소리 재생
             document.getElementById('bgm').play().catch(e => console.log("자동재생 차단됨"));
             
             document.getElementById('intro').classList.remove('active');
@@ -400,7 +402,7 @@
                 btn.className = 'choice-btn';
                 btn.innerText = choice.text;
                 btn.onclick = () => {
-                    playBtnSound(); // [NEW] 선택지 클릭 시 효과음
+                    playSfx('sfx-page'); // 책 넘기는 소리
                     scores[choice.target]++;
                     nextQuestion();
                 };
@@ -417,34 +419,33 @@
             }
         }
 
-        // [NEW] 로딩 멘트 랜덤화 기능
         const loadingMessages = [
             "별들이 운명을 점치고 있습니다...",
             "유우시가 마법을 거는 중입니다...",
             "시온이 황실 문서를 검토 중입니다...",
             "사쿠야가 케이크를 다 먹어버렸습니다!",
-            "리쿠가 츤데레 멘트를 준비 중입니다...",
-            "료가 당신과의 미래를 설계 중입니다...",
-            "재희가 당신을 위해 기도를 올립니다..."
+            "리쿠가 당신을 힐끔힐끔 바라봅니다...",
+            "재희가 당신을 위해 기도를 올립니다...",
+            "료가 당신과의 미래를 설계 중입니다..."
+            
         ];
 
         function showLoading() {
             showSection('loading');
+            playSfx('sfx-mystic'); // 미스틱 로딩 소리
             
             const textEl = document.getElementById('loading-text');
             let i = 0;
             
-            // 1초마다 멘트 변경
             const interval = setInterval(() => {
                 textEl.innerText = loadingMessages[i % loadingMessages.length];
                 i++;
-            }, 1000);
+            }, 800);
 
-            // 3.5초 뒤에 결과 화면으로 (로딩 시간 살짝 늘림)
             setTimeout(() => {
                 clearInterval(interval);
                 showResult();
-            }, 7000);
+            }, 8000);
         }
 
         function showResult() {
@@ -462,37 +463,28 @@
             document.getElementById('r-name').innerText = data.name;
             document.getElementById('r-quote').innerText = `"${data.quote}"`;
             document.getElementById('r-desc').innerText = data.desc;
-            
-     
             document.getElementById('r-img').src = "./images/" + data.img; 
 
+            playSfx('sfx-result'); // 결과 띠링 소리
             showSection('result');
         }
 
         function shareTwitter() {
             const rName = document.getElementById('r-name').innerText;
-            const text = `[운명의 왕자님 찾기]\n나의 정혼자는 '${rName}'입니다!\n공주님도 당신의 왕자님을 찾아보세요 👑\n#NCTWISH #팬미팅_청혼`;
+            const text = `[운명의 왕자님 찾기]\n나의 정혼자는 '${rName}'입니다!\n공주님도 당신의 왕자님을 찾아보세요 👑\n#NCTWISH #엔시티위시 #팬미팅 #테스트`;
             const url = window.location.href;
             window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
         }
 
-        // [NEW] 마우스 움직임 감지하여 별가루 효과 생성
         document.addEventListener('mousemove', function(e) {
             const sparkle = document.createElement('div');
             sparkle.classList.add('sparkle');
-            
-            // 마우스 위치에 생성
             sparkle.style.left = e.pageX + 'px';
             sparkle.style.top = e.pageY + 'px';
-            
-            // 약간의 랜덤 크기
-            const size = Math.random() * 4 + 2; // 2px ~ 6px
+            const size = Math.random() * 4 + 2; 
             sparkle.style.width = size + 'px';
             sparkle.style.height = size + 'px';
-
             document.body.appendChild(sparkle);
-
-            // 애니메이션 끝나면 요소 삭제 (메모리 관리)
             setTimeout(() => {
                 sparkle.remove();
             }, 1000);
@@ -500,6 +492,3 @@
     </script>
 </body>
 </html>
-
-
-
