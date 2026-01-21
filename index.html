@@ -168,15 +168,15 @@
 
         <section id="intro" class="active">
             <img src="./images/invitationcard.jpg" alt="NCT WISH 초대장" class="intro-img" onclick="triggerLogoAnimation()">
-            <button class="btn-gold" onclick="triggerLogoAnimation()">초대장 열기</button>
+            <button class="btn-gold" onclick="triggerLogoAnimation()">출발하기</button>
         </section>
 
         <section id="name-input" class="fade-in content-with-logo">
             <h2 style="margin-bottom: 30px; font-weight: normal; font-family:'RoyalTitle', serif;">입장하시겠습니까?</h2>
             <p>초대장에 적힌 이름을 알려주세요.</p>
             <input type="text" id="username" placeholder="시즈니" maxlength="5">
-            <p style="font-size: 0.9rem; opacity: 0.7;">________ 공주님</p>
-            <button class="btn-gold" onclick="playBtnSound(); startGame();">입장하기</button>
+            <p style="font-size: 0.9rem; opacity: 0.7;">공주님</p>
+            <button class="btn-gold" onclick="playBtnSound(); startGame();">연입장하기</button>
         </section>
 
         <section id="game" class="fade-in content-with-logo">
@@ -434,17 +434,17 @@
             const textEl = document.getElementById('loading-text');
             let i = 0;
             
-            // 0.7초마다 멘트 변경
+            // 1초마다 멘트 변경
             const interval = setInterval(() => {
                 textEl.innerText = loadingMessages[i % loadingMessages.length];
                 i++;
-            }, 700);
+            }, 1000);
 
             // 3.5초 뒤에 결과 화면으로 (로딩 시간 살짝 늘림)
             setTimeout(() => {
                 clearInterval(interval);
                 showResult();
-            }, 3500);
+            }, 7000);
         }
 
         function showResult() {
@@ -500,3 +500,4 @@
     </script>
 </body>
 </html>
+
