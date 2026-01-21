@@ -29,7 +29,7 @@
             --btn-bg: rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: default; } /* 기본 커서 */
         
         body {
             background-color: var(--bg-color);
@@ -53,7 +53,24 @@
             min-height: 100vh;
         }
 
-        /* --- 로고 애니메이션 스타일 --- */
+        /* --- [NEW] 별가루 효과 스타일 --- */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: var(--main-gold);
+            border-radius: 50%;
+            pointer-events: none; /* 클릭 방해 안 하게 */
+            animation: fall 1s linear forwards;
+            box-shadow: 0 0 5px var(--main-gold);
+            z-index: 9999;
+        }
+        @keyframes fall {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(30px) scale(0.5); }
+        }
+
+        /* --- 로고 애니메이션 --- */
         #main-logo {
             position: absolute;
             z-index: 100;
@@ -61,136 +78,74 @@
             opacity: 0;
             pointer-events: none;
         }
-
         #main-logo.center {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            max-width: 350px;
-            opacity: 1;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 80%; max-width: 350px; opacity: 1;
         }
-
         #main-logo.top {
-            top: 40px;
-            left: 50%;
-            transform: translate(-50%, 0);
-            width: 60%;
-            max-width: 250px;
-            opacity: 1;
+            top: 40px; left: 50%; transform: translate(-50%, 0);
+            width: 60%; max-width: 250px; opacity: 1;
         }
 
         .content-with-logo { padding-top: 140px; }
-
-        /* 공통 애니메이션 */
         .fade-in { animation: fadeIn 1s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 섹션 제어 */
         section { display: none; width: 100%; text-align: center; }
         section.active { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; }
 
-        /* 인트로 이미지 */
         .intro-img {
-            width: 100%;
-            max-width: 450px;
-            height: auto;
-            border-radius: 5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-            cursor: pointer;
+            width: 100%; max-width: 450px; height: auto;
+            border-radius: 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 30px; cursor: pointer;
             animation: fadeInUp 1.5s ease-out;
         }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 입력창 스타일 */
         input[type="text"] {
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid var(--sub-gold);
-            color: white;
-            font-size: 1.5rem;
-            text-align: center;
-            padding: 10px;
-            margin: 20px 0;
-            font-family: 'Gowun Batang', serif;
-            width: 80%;
+            background: transparent; border: none; border-bottom: 2px solid var(--sub-gold);
+            color: white; font-size: 1.5rem; text-align: center; padding: 10px;
+            margin: 20px 0; font-family: 'Gowun Batang', serif; width: 80%;
         }
         input:focus { outline: none; border-bottom-color: var(--main-gold); }
 
-        /* 버튼 스타일 (공통) */
         .btn-gold {
             font-family: 'RoyalTitle', serif;
             background: linear-gradient(45deg, #bfae76, #f1e5ac);
-            color: #0a0e17;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s;
-            margin-top: 20px;
+            color: #0a0e17; border: none; padding: 15px 40px;
+            border-radius: 30px; font-size: 1.1rem; font-weight: bold;
+            cursor: pointer; transition: transform 0.2s; margin-top: 20px;
             box-shadow: 0 0 15px rgba(241, 229, 172, 0.4);
         }
         .btn-gold:hover { transform: scale(1.05); }
 
-        /* 게임 화면 */
         .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); margin-bottom: 30px; border-radius: 2px; }
         .progress-fill { height: 100%; background: var(--main-gold); width: 0%; transition: width 0.3s ease; }
         .question-text { 
-            font-family: 'CleanBody', serif; /* 질문도 명조체로 */
-            font-size: 1.4rem; /* 폰트가 얇을 수 있어서 사이즈를 조금 키움 */
-            font-weight: bold; 
-            margin-bottom: 30px; 
-            line-height: 1.5; 
-            min-height: 80px; 
+            font-family: 'CleanBody', serif; font-size: 1.4rem; font-weight: bold; 
+            margin-bottom: 30px; line-height: 1.5; min-height: 80px; 
         }
         
-        /* [수정됨] 선택지 버튼 스타일 */
         .choice-btn {
-            width: 100%;
-            background: var(--btn-bg);
-            border: 1px solid var(--sub-gold);
-            color: white;
-            padding: 18px; /* 터치하기 좋게 조금 더 키움 */
-            margin-bottom: 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            
-            /* 여기를 CleanBody(명조체)로 변경! */
-            font-family: 'CleanBody', serif; 
-            font-size: 1.1rem;
-            
-            transition: all 0.3s;
-            text-align: left;
-            line-height: 1.4;
+            width: 100%; background: var(--btn-bg); border: 1px solid var(--sub-gold);
+            color: white; padding: 18px; margin-bottom: 12px;
+            border-radius: 10px; cursor: pointer;
+            font-family: 'CleanBody', serif; font-size: 1.1rem;
+            transition: all 0.3s; text-align: left; line-height: 1.4;
         }
         .choice-btn:hover { background: rgba(241, 229, 172, 0.2); transform: translateX(5px); }
 
-        /* 결과 화면 */
         .result-card { background: rgba(0, 0, 0, 0.3); border: 1px solid var(--sub-gold); padding: 20px; border-radius: 15px; text-align: center; width: 100%; margin-bottom: 20px; }
         .result-img { width: 100%; max-width: 300px; border-radius: 10px; margin: 20px 0; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
         .result-title { color: var(--main-gold); font-size: 1.5rem; margin-bottom: 10px; }
         .result-name { font-family: 'RoyalTitle', serif; font-size: 2rem; font-weight: bold; margin-bottom: 20px; }
         .result-quote { font-family: 'RoyalTitle', serif; font-style: italic; color: #ccc; margin-bottom: 20px; padding: 10px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
         
-        /* [수정됨] 트위터 공유 버튼 스타일 */
         .share-btn { 
-            background: #1DA1F2; 
-            color: white; 
-            border: none; 
-            padding: 15px 30px; 
-            border-radius: 30px; 
-            cursor: pointer; 
-            font-size: 1.1rem; 
-            margin: 5px; 
-            
-            /* 여기를 RoyalTitle(제목용)로 변경! */
+            background: #1DA1F2; color: white; border: none; padding: 15px 30px; 
+            border-radius: 30px; cursor: pointer; font-size: 1.1rem; margin: 5px; 
             font-family: 'RoyalTitle', serif; 
-            
-            box-shadow: 0 5px 15px rgba(29, 161, 242, 0.4);
-            transition: transform 0.2s;
+            box-shadow: 0 5px 15px rgba(29, 161, 242, 0.4); transition: transform 0.2s;
         }
         .share-btn:hover { transform: scale(1.05); }
         
@@ -200,6 +155,10 @@
 <body>
     <audio id="bgm" loop preload="auto">
         <source src="romancebgm.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="sfx-btn" preload="auto">
+        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_2456453663.mp3" type="audio/mp3">
     </audio>
 
     <div class="container">
@@ -216,8 +175,8 @@
             <h2 style="margin-bottom: 30px; font-weight: normal; font-family:'RoyalTitle', serif;">입장하시겠습니까?</h2>
             <p>초대장에 적힌 이름을 알려주세요.</p>
             <input type="text" id="username" placeholder="시즈니" maxlength="5">
-            <p style="font-size: 0.9rem; opacity: 0.7;"> 공주님</p>
-            <button class="btn-gold" onclick="startGame()">입장하기</button>
+            <p style="font-size: 0.9rem; opacity: 0.7;">________ 공주님</p>
+            <button class="btn-gold" onclick="playBtnSound(); startGame();">입장하기</button>
         </section>
 
         <section id="game" class="fade-in content-with-logo">
@@ -228,7 +187,7 @@
 
         <section id="loading" class="fade-in content-with-logo">
             <div style="font-size: 3rem; animation: float 1s infinite;">🔮</div>
-            <p style="margin-top: 20px; font-size: 1.2rem;">별들이 운명을 점치고 있습니다...</p>
+            <p id="loading-text" style="margin-top: 20px; font-size: 1.2rem;">별들이 운명을 점치고 있습니다...</p>
         </section>
 
         <section id="result" class="fade-in content-with-logo">
@@ -239,8 +198,8 @@
                 <div class="result-quote" id="r-quote"></div>
                 <div style="line-height: 1.6; word-break: keep-all;" id="r-desc"></div>
             </div>
-            <button class="share-btn" onclick="shareTwitter()">💌약혼 발표하기</button>
-            <button class="btn-gold" onclick="location.reload()" style="margin-top: 10px; font-size: 0.9rem; padding: 10px 20px;">🔄 다시하기</button>
+            <button class="share-btn" onclick="playBtnSound(); shareTwitter();">💌 약혼 발표하기</button>
+            <button class="btn-gold" onclick="playBtnSound(); location.reload()" style="margin-top: 10px; font-size: 0.9rem; padding: 10px 20px;">🔄 다시하기</button>
         </section>
     </div>
 
@@ -250,7 +209,7 @@
             { q: "Q1. 연회장에 들어선 순간, 눈이 마주친 사람은?", a: [
                 { text: "저 멀리서 방방 뛰며 손을 흔드는 왕자", target: "sakuya" },
                 { text: "나와 눈이 마주치자 황급히 시선을 피해버리는 왕자", target: "riku" },
-                { text: "제복을 단정하게 차려입고 문 앞까지 마중 나와 에스코트를 기다리는 왕자", target: "jaehee" }, // jaehee로 수정
+                { text: "제복을 단정하게 차려입고 문 앞까지 마중 나와 에스코트를 기다리는 왕자", target: "jaehee" },
                 { text: "턱을 괴고 앉아 나를 발견하곤 여유롭게 샴페인 잔을 들어 올리는 황태자", target: "sion" },
                 { text: "연회 순서가 적힌 서류를 꼼꼼히 체크하다가 나를 보고 안경을 떨어뜨릴 뻔한 왕자", target: "ryo" },
                 { text: "아무도 없는 테라스 그늘, 허공을 응시하다가 나와 눈이 마주치자 멈칫하는 왕자", target: "yushi" }
@@ -259,7 +218,7 @@
                 { text: "화려한 깃털 가면", target: "sion" },
                 { text: "단정한 은색 가면", target: "jaehee" },
                 { text: "얼굴 절반을 가리는 신비로운 가면", target: "yushi" },
-                { text: "차가운 얼음 가면'", target: "riku" },
+                { text: "차가운 얼음 가면", target: "riku" },
                 { text: "눈만 겨우 가리는 심플한 가면", target: "ryo" },
                 { text: "귀여운 가면", target: "sakuya" }
             ]},
@@ -267,7 +226,7 @@
                 { text: "붉은 장미 향이 나는 최고급 와인", target: "sion" },
                 { text: "깔끔하고 청량한 과일 주스", target: "jaehee" },
                 { text: "보라색 오로라가 일렁이는 정체불명의 칵테일", target: "yushi" },
-                { text: "독해 보이지만 얼음이 가득 든 위스키 온 더 락'", target: "riku" },
+                { text: "독해 보이지만 얼음이 가득 든 위스키 온 더 락", target: "riku" },
                 { text: "마음을 차분하게 진정시켜 주는 따뜻한 홍차", target: "ryo" },
                 { text: "톡톡 터지는 캔디가 들어간 에이드", target: "sakuya" }
             ]},
@@ -394,7 +353,17 @@
             else { bgm.pause(); document.querySelector('.music-control').innerText = '🔇'; }
         }
 
+        // [NEW] 버튼 클릭 효과음 재생 함수
+        function playBtnSound() {
+            const audio = document.getElementById('sfx-btn');
+            if(audio) {
+                audio.currentTime = 0; // 연속 클릭 시 처음부터 재생
+                audio.play().catch(e => console.log("효과음 재생 차단됨"));
+            }
+        }
+
         function triggerLogoAnimation() {
+            playBtnSound(); // 효과음 추가
             document.getElementById('bgm').play().catch(e => console.log("자동재생 차단됨"));
             
             document.getElementById('intro').classList.remove('active');
@@ -431,6 +400,7 @@
                 btn.className = 'choice-btn';
                 btn.innerText = choice.text;
                 btn.onclick = () => {
+                    playBtnSound(); // [NEW] 선택지 클릭 시 효과음
                     scores[choice.target]++;
                     nextQuestion();
                 };
@@ -447,9 +417,34 @@
             }
         }
 
+        // [NEW] 로딩 멘트 랜덤화 기능
+        const loadingMessages = [
+            "별들이 운명을 점치고 있습니다...",
+            "유우시가 마법을 거는 중입니다...",
+            "시온이 황실 문서를 검토 중입니다...",
+            "사쿠야가 케이크를 다 먹어버렸습니다!",
+            "리쿠가 츤데레 멘트를 준비 중입니다...",
+            "료가 당신과의 미래를 설계 중입니다...",
+            "재희가 당신을 위해 기도를 올립니다..."
+        ];
+
         function showLoading() {
             showSection('loading');
-            setTimeout(showResult, 2000);
+            
+            const textEl = document.getElementById('loading-text');
+            let i = 0;
+            
+            // 0.7초마다 멘트 변경
+            const interval = setInterval(() => {
+                textEl.innerText = loadingMessages[i % loadingMessages.length];
+                i++;
+            }, 700);
+
+            // 3.5초 뒤에 결과 화면으로 (로딩 시간 살짝 늘림)
+            setTimeout(() => {
+                clearInterval(interval);
+                showResult();
+            }, 3500);
         }
 
         function showResult() {
@@ -480,8 +475,28 @@
             const url = window.location.href;
             window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
         }
+
+        // [NEW] 마우스 움직임 감지하여 별가루 효과 생성
+        document.addEventListener('mousemove', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            
+            // 마우스 위치에 생성
+            sparkle.style.left = e.pageX + 'px';
+            sparkle.style.top = e.pageY + 'px';
+            
+            // 약간의 랜덤 크기
+            const size = Math.random() * 4 + 2; // 2px ~ 6px
+            sparkle.style.width = size + 'px';
+            sparkle.style.height = size + 'px';
+
+            document.body.appendChild(sparkle);
+
+            // 애니메이션 끝나면 요소 삭제 (메모리 관리)
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        });
     </script>
 </body>
 </html>
-
-
