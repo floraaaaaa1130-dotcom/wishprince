@@ -219,42 +219,24 @@
             cursor: pointer;
             z-index: 10;
         }
-/* --- [여기서부터 복사] 빨간색 초대장 디자인 --- */
-    :root {
-        --card-bg: #6d1016; /* 딥 레드 배경 */
-        --card-border: #dcb66f; /* 금색 테두리 */
-    }
 
-    .invitation-card {
-        background-color: var(--card-bg);
-        border: 3px solid var(--card-border); /* 바깥 금색 테두리 */
-        padding: 8px; 
-        width: 100%;
-        max-width: 380px; /* 카드 폭 */
-        margin: 0 auto 30px auto;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        position: relative;
-        animation: fadeInUp 1.5s ease-out;
-    }
+      /* 인트로 초대장 이미지 스타일 */
+.intro-img {
+    width: 100%;
+    max-width: 450px; /* 화면에서 너무 거대해지지 않게 최대폭 제한 */
+    height: auto; /* 비율 유지 */
+    border-radius: 5px; /* 모서리 살짝만 둥글게 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* 고급스러운 그림자 */
+    margin-bottom: 30px;
+    cursor: pointer; /* 클릭 가능하다는 손가락 표시 */
+    animation: fadeInUp 1.5s ease-out; /* 부드럽게 떠오르는 효과 */
+}
 
-    .invitation-inner {
-        border: 1px solid var(--card-border); /* 안쪽 얇은 테두리 */
-        padding: 40px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        height: 100%;
-    }
-
-    /* 카드 안쪽 텍스트 색상 변경 */
-    .invitation-inner .letter-text {
-        color: #fdfdfd; /* 흰색 글씨 */
-        text-shadow: none;
-        margin-bottom: 0;
-    }
-        
+/* 떠오르는 애니메이션 (혹시 지우셨다면 다시 추가!) */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}  
     </style>
 </head>
 <body>
@@ -265,21 +247,9 @@
     <div class="container">
         <div class="music-control" onclick="toggleMusic()">🔊</div>
 
-        <section id="intro" class="active fade-in">
-    
-    <div class="invitation-card" onclick="goToName()">
-        <div class="invitation-inner">
-            <div style="font-size: 3rem; margin-bottom: 20px;">💌</div>
-            
-            <div class="letter-text">
-                친애하는 <span style="font-weight:bold; color:#dcb66f;">NCTzen</span> 공주님께.<br><br>
-                2026년 2월 21일,<br>
-                운명의 왕자님을 찾는 연회에<br>
-                당신을 초대합니다.<br><br>
-                이곳에서 당신의 사랑을 완성해주세요.
-            </div>
-        </div>
-    </div>
+        <section id="intro" class="active">
+    <img src="./images/invitationcard.jpg" alt="NCT WISH 초대장" class="intro-img" onclick="goToName()">
+
     <button class="btn-gold" onclick="goToName()">초대장 열기</button>
 </section>
 
@@ -452,3 +422,4 @@
 </body>
 
 </html>
+
