@@ -463,8 +463,8 @@
             document.getElementById('r-quote').innerText = `"${data.quote}"`;
             document.getElementById('r-desc').innerText = data.desc;
             
-            // 이미지 경로 주석 풀고 사용하세요
-            // document.getElementById('r-img').src = "./images/" + data.img; 
+     
+            document.getElementById('r-img').src = "./images/" + data.img; 
 
             showSection('result');
         }
@@ -500,5 +500,6 @@
     </script>
 </body>
 </html>
+
 
 
