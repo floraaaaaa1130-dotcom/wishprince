@@ -14,7 +14,7 @@
         }
         @font-face {
             font-family: 'CleanBody';
-            src: url('./fonts/BookkMyungjo_Light.otf') format('truetype');
+            src: url('./fonts/BookkMyungjo_Light.ttf') format('truetype');
         }
         @font-face {
             font-family: 'LetterHand';
@@ -172,7 +172,7 @@
 
         <section id="intro" class="active">
             <img src="./images/invitationcard.jpg" alt="NCT WISH 초대장" class="intro-img" onclick="triggerLogoAnimation()">
-            <button class="btn-gold" onclick="triggerLogoAnimation()">초대장 열기</button>
+            <button class="btn-gold" onclick="triggerLogoAnimation()"연회장으로 출발하기</button>
         </section>
 
         <section id="name-input" class="fade-in content-with-logo">
@@ -180,7 +180,7 @@
             <p>초대장에 적힌 이름을 알려주세요.</p>
             <input type="text" id="username" placeholder="시즈니" maxlength="5">
             <p style="font-size: 0.9rem; opacity: 0.7;">________ 공주님</p>
-            <button class="btn-gold" onclick="startGame()">연회장 입장하기</button>
+            <button class="btn-gold" onclick="startGame()">입장하기</button>
         </section>
 
         <section id="game" class="fade-in content-with-logo">
@@ -355,4 +355,5 @@
     </script>
 </body>
 </html>
+
 
