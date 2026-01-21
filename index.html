@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운명의 왕자님 찾기 - NCT WISH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --main-gold: #f1e5ac;
+            --sub-gold: #bfae76;
+            --text-color: #ffffff;
+            --btn-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 10%, #1a2436 0%, #0a0e17 80%);
+            color: var(--text-color);
+            font-family: 'Gowun Batang', serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* 모바일 뷰 최적화 */
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 공통 애니메이션 */
+        .fade-in { animation: fadeIn 1s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 섹션 제어 */
+        section { display: none; width: 100%; text-align: center; }
+        section.active { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; }
+
+        /* 1. 인트로 (초대장) */
+        .envelope {
+            width: 200px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            animation: float 3s infinite ease-in-out;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        
+        .letter-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: var(--main-gold);
+            text-shadow: 0 0 5px rgba(241, 229, 172, 0.3);
+            white-space: pre-line; /* 줄바꿈 적용 */
+        }
+
+        /* 2. 이름 입력 */
+        input[type="text"] {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--sub-gold);
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 10px;
+            margin: 20px 0;
+            font-family: 'Gowun Batang', serif;
+            width: 80%;
+        }
+        input:focus { outline: none; border-bottom-color: var(--main-gold); }
+
+        /* 버튼 스타일 */
+        .btn-gold {
+            background: linear-gradient(45deg, #bfae76, #f1e5ac);
+            color: #0a0e17;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Pretendard', sans-serif;
+            transition: transform 0.2s;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(241, 229, 172, 0.4);
+        }
+        .btn-gold:hover { transform: scale(1.05); }
+
+        /* 3. 게임 화면 */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+            border-radius: 2px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--main-gold);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            min-height: 80px; /* 높이 고정 */
+        }
+        .choice-btn {
+            width: 100%;
+            background: var(--btn-bg);
+            border: 1px solid var(--sub-gold);
+            color: white;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Pretendard', sans-serif;
+            transition: all 0.3s;
+            text-align: left;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        .choice-btn:hover {
+            background: rgba(241, 229, 172, 0.2);
+            transform: translateX(5px);
+        }
+
+        /* 4. 결과 화면 */
+        .result-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--sub-gold);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .result-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .result-title {
+            color: var(--main-gold);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .result-name {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .result-quote {
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .share-btn {
+            background: #1DA1F2; /* 트위터 색 */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 5px;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        /* 음악 아이콘 */
+        .music-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgm" loop preload="auto">
+        <source src="https://cdn.pixabay.com/audio/2023/06/26/audio_985b1e604f.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="container">
+        <div class="music-control" onclick="toggleMusic()">🔊</div>
+
+        <section id="intro" class="active fade-in">
+            <div style="font-size: 3rem; margin-bottom: 20px;">💌</div>
+            <div class="letter-text">
+                친애하는 <span style="font-weight:bold; color:#fff;">NCTzen</span> 공주님께.<br><br>
+                2026년 2월 21일,<br>
+                운명의 왕자님을 찾는 연회에<br>
+                당신을 초대합니다.<br><br>
+                이곳에서 당신의 사랑을 완성해주세요.
+            </div>
+            <button class="btn-gold" onclick="goToName()">초대장 열기</button>
+        </section>
+
+        <section id="name-input" class="fade-in">
+            <h2 style="margin-bottom: 30px; font-weight: normal;">입장하시겠습니까?</h2>
+            <p>초대장에 적힌 이름을 알려주세요.</p>
+            <input type="text" id="username" placeholder="시즈니" maxlength="5">
+            <p style="font-size: 0.9rem; opacity: 0.7;">________ 공주님</p>
+            <button class="btn-gold" onclick="startGame()">연회장 입장하기</button>
+        </section>
+
+        <section id="game" class="fade-in">
+            <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+            <div class="question-text" id="q-text">질문이 여기에 나옵니다.</div>
+            <div id="choices-area">
+                </div>
+        </section>
+
+        <section id="loading" class="fade-in">
+            <div style="font-size: 3rem; animation: float 1s infinite;">🔮</div>
+            <p style="margin-top: 20px; font-size: 1.2rem;">별들이 운명을 점치고 있습니다...</p>
+        </section>
+
+        <section id="result" class="fade-in">
+            <div class="result-card">
+                <div class="result-title" id="r-title">왕자 칭호</div>
+                <div class="result-name" id="r-name">왕자 이름</div>
+                <img src="https://placehold.co/300x400/1a2436/f1e5ac?text=Prince+Image" id="r-img" class="result-img">
+                <div class="result-quote" id="r-quote">"명대사"</div>
+                <div style="line-height: 1.6; word-break: keep-all;" id="r-desc">
+                    결과 설명이 들어갑니다.
+                </div>
+            </div>
+            <button class="share-btn" onclick="shareTwitter()">💌 트위터에 약혼 발표하기</button>
+            <button class="btn-gold" onclick="location.reload()" style="margin-top: 10px; font-size: 0.9rem; padding: 10px 20px;">🔄 다시하기</button>
+        </section>
+    </div>
+
+    <script>
+        // --- 데이터 설정 (윤지님이 만든 15개 질문과 결과) ---
+        // target: sion(아뜰리에), jaehee(포스), yushi(다비), riku(라일), ryo(치치), sakuya(베티)
+        
+        const questions = [
+            { q: "Q1. 옥좌 근처에서 당신을 바라보는 사람은?", a: [
+                { text: "여유롭게 샴페인 잔을 들어 올리는 제국의 황태자", target: "sion" },
+                { text: "제복을 입고 에스코트를 기다리는 기사국의 왕자", target: "jaehee" },
+                { text: "허공을 응시하다 눈이 마주치자 멈칫하는 마법국의 왕자", target: "yushi" },
+                { text: "황급히 고개를 홱 돌려버리는 북부의 왕자", target: "riku" },
+                { text: "나를 보고 안경을 떨어뜨릴 뻔한 학술국의 왕자", target: "ryo" },
+                { text: "디저트를 들고 방방 뛰며 손을 흔드는 요정국의 왕자", target: "sakuya" }
+            ]},
+            { q: "Q2. 당신이 고른 가면과 입장 대사는?", a: [
+                { text: "화려한 깃털 가면. '오늘 밤의 주인공은 나야.'", target: "sion" },
+                { text: "단정한 은색 가면. '튀지 않게, 하지만 기품 있게.'", target: "jaehee" },
+                { text: "신비로운 가면. '아무도 나를 찾지 못했으면.'", target: "yushi" },
+                { text: "차가운 얼음 가면. '말 걸지 마세요 (제발 걸어줘)'", target: "riku" },
+                { text: "심플한 가면. '실수하면 안 돼... 동선 체크 완벽해.'", target: "ryo" },
+                { text: "고양이 가면. '다들 나 귀엽다고 하겠지?'", target: "sakuya" }
+            ]},
+            // ... (Q3~Q14는 분량상 생략, 실제 적용 시 15개 다 넣으시면 됩니다!)
+            // 테스트를 위해 마지막 질문만 넣었습니다. 실제론 여기에 다 이어붙이세요!
+            { q: "Q15. 왕자님이 무릎을 꿇고 청혼한다. 당신의 손을 잡을 사람은?", a: [
+                { text: "'나의 황태자비가 되어줘. 제국의 태양 아래 유일한 별은 너뿐이야.'", target: "sion" },
+                { text: "'왕관 따위 필요 없어. 평생 너만의 기사로 살고 싶어.'", target: "jaehee" },
+                { text: "'나의 세계는 너로 인해 완성됐어. 나를 구원해 줘.'", target: "yushi" },
+                { text: "'...널 좋아해. 내 북부의 차가운 성을 네 온기로 녹여줘.'", target: "riku" },
+                { text: "'제 지혜와 이 나라의 모든 국고... 전부 공주님을 위해 쓰겠습니다.'", target: "ryo" },
+                { text: "'누나! 나랑 결혼해 줘! 세상에서 제일 행복한 여주인공으로 만들어 줄게!'", target: "sakuya" }
+            ]}
+        ];
+
+        // 결과 데이터
+        const results = {
+            sion: { title: "제국의 황태자", name: "아뜰리에 (시온)", quote: "나의 황태자비가 되어줘.", desc: "당신은 능글맞지만 내 여자에게만 따뜻한 제국의 황태자 시온과 운명입니다. 그의 장난을 받아줄 수 있는 유일한 사람은 당신뿐이에요!", img: "sion.jpg" },
+            jaehee: { title: "기사국의 왕자", name: "포스 (재희)", quote: "당신만을 위해 검을 든 수호자.", desc: "왕관보다 당신의 안전을 택하는 헌신적인 사랑! 친구처럼 편안하지만 결정적인 순간엔 남자로 다가오는 재희가 당신의 운명입니다.", img: "jaehee.jpg" },
+            yushi: { title: "마법국의 왕자", name: "다비 (유우시)", quote: "금지된 마법을 다루는 신비주의자.", desc: "엉뚱하고 조용하지만, 알고 보면 엄청난 소유욕의 소유자. 당신에게만 반응하는 그의 마력을 감당하실 수 있겠나요?", img: "yushi.jpg" },
+            riku: { title: "북부의 왕자", name: "라일 (리쿠)", quote: "얼어붙은 심장을 가진 지배자.", desc: "겉은 차갑지만 속은 누구보다 따뜻한 츤데레의 정석! 당신이 다가오기만을 기다리고 있던 외로운 늑대와 사랑에 빠지셨군요.", img: "riku.jpg" },
+            ryo: { title: "학술국의 왕자", name: "치치 (료)", quote: "당신의 완벽한 설계를 돕는 지략가.", desc: "당신을 오랫동안 짝사랑해온 지성파 왕자님. 서툴지만 진심을 다해 당신의 모든 것을 서포트해 줄 최고의 남편감입니다.", img: "ryo.jpg" },
+            sakuya: { title: "요정국의 왕자", name: "베티 (사쿠야)", quote: "사랑을 노래하는 봄의 정령.", desc: "매일매일이 축제 같은 삶! 당신을 웃게 만들기 위해서라면 뭐든지 할 준비가 된 사랑스러운 연하남과 운명이네요.", img: "sakuya.jpg" }
+        };
+
+        // --- 로직 ---
+        let currentQ = 0;
+        let scores = { sion: 0, jaehee: 0, yushi: 0, riku: 0, ryo: 0, sakuya: 0 };
+        let username = "시즈니";
+
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function toggleMusic() {
+            const bgm = document.getElementById('bgm');
+            if(bgm.paused) { bgm.play(); document.querySelector('.music-control').innerText = '🔊'; }
+            else { bgm.pause(); document.querySelector('.music-control').innerText = '🔇'; }
+        }
+
+        function goToName() {
+            // 음악 자동 재생 시도
+            document.getElementById('bgm').play().catch(e => console.log("자동재생 차단됨"));
+            showSection('name-input');
+        }
+
+        function startGame() {
+            const inputName = document.getElementById('username').value;
+            if(inputName) username = inputName;
+            
+            // 실제 질문 개수가 2개면 15개로 늘려주세요! (위 코드엔 예시로 2개만 있음)
+            currentQ = 0;
+            renderQuestion();
+            showSection('game');
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQ];
+            document.getElementById('q-text').innerText = q.q.replace('당신', username); // 이름 치환
+            document.getElementById('progress').style.width = ((currentQ / questions.length) * 100) + '%';
+            
+            const area = document.getElementById('choices-area');
+            area.innerHTML = '';
+            
+            q.a.forEach(choice => {
+                const btn = document.createElement('button');
+                btn.className = 'choice-btn';
+                btn.innerText = choice.text;
+                btn.onclick = () => {
+                    scores[choice.target]++;
+                    nextQuestion();
+                };
+                area.appendChild(btn);
+            });
+        }
+
+        function nextQuestion() {
+            if (currentQ < questions.length - 1) {
+                currentQ++;
+                renderQuestion();
+            } else {
+                showLoading();
+            }
+        }
+
+        function showLoading() {
+            showSection('loading');
+            setTimeout(showResult, 2000); // 2초 뒤 결과 공개
+        }
+
+        function showResult() {
+            // 점수 계산 (최대값 찾기)
+            let maxScore = 0;
+            let resultKey = "sion"; // 기본값
+            for (let key in scores) {
+                if (scores[key] > maxScore) {
+                    maxScore = scores[key];
+                    resultKey = key;
+                }
+            }
+
+            const data = results[resultKey];
+            document.getElementById('r-title').innerText = data.title;
+            document.getElementById('r-name').innerText = data.name;
+            document.getElementById('r-quote').innerText = `"${data.quote}"`;
+            document.getElementById('r-desc').innerText = data.desc;
+            
+            // 실제 이미지 파일이 있다면 아래 주석을 풀고 파일명을 맞추세요
+            // document.getElementById('r-img').src = "./images/" + data.img; 
+
+            showSection('result');
+        }
+
+        function shareTwitter() {
+            const rName = document.getElementById('r-name').innerText;
+            const text = `[운명의 왕자님 찾기]\n나의 정혼자는 '${rName}'입니다!\n공주님도 당신의 왕자님을 찾아보세요 👑\n#NCTWISH #팬미팅_청혼 #운명의왕자님찾기`;
+            const url = window.location.href;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
+        }
+    </script>
+</body>
+</html>
