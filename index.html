@@ -6,7 +6,7 @@
     <title>운명의 왕자님 찾기 - NCT WISH</title>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* 폰트 설정 (파일 경로가 정확해야 나옵니다!) */
+        /* 폰트 설정 */
         @font-face {
             font-family: 'RoyalTitle';
             src: url('./fonts/HeirofLightRegular.ttf') format('truetype');
@@ -14,7 +14,7 @@
         }
         @font-face {
             font-family: 'CleanBody';
-            src: url('./fonts/BookkMyungjo_Light.otf') format('opentype'); /* otf는 opentype */
+            src: url('./fonts/BookkMyungjo_Light.otf') format('opentype');
         }
         @font-face {
             font-family: 'LetterHand';
@@ -53,6 +53,42 @@
             min-height: 100vh;
         }
 
+        /* --- 로고 애니메이션 스타일 (NEW) --- */
+        #main-logo {
+            position: absolute;
+            z-index: 100;
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); /* 아주 부드러운 움직임 */
+            opacity: 0; /* 처음엔 안 보임 */
+            pointer-events: none; /* 클릭 방지 */
+        }
+
+        /* 1. 화면 정중앙 상태 */
+        #main-logo.center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%; /* 화면 꽉 차게 */
+            max-width: 350px;
+            opacity: 1;
+        }
+
+        /* 2. 상단 고정 상태 */
+        #main-logo.top {
+            top: 40px; /* 상단 여백 */
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 60%; /* 조금 작게 줄어듦 */
+            max-width: 250px;
+            opacity: 1;
+        }
+
+        /* 로고가 상단에 있을 때, 섹션 내용들이 로고랑 겹치지 않게 여백 추가 */
+        .content-with-logo {
+            padding-top: 140px; /* 로고 높이만큼 공간 확보 */
+        }
+        /* ---------------------------------- */
+
+
         /* 공통 애니메이션 */
         .fade-in { animation: fadeIn 1s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -61,7 +97,7 @@
         section { display: none; width: 100%; text-align: center; }
         section.active { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; }
 
-        /* 인트로 이미지 스타일 */
+        /* 인트로 이미지 */
         .intro-img {
             width: 100%;
             max-width: 450px;
@@ -72,13 +108,9 @@
             cursor: pointer;
             animation: fadeInUp 1.5s ease-out;
         }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 이름 입력 화면 스타일 */
+        /* 입력창 스타일 */
         input[type="text"] {
             background: transparent;
             border: none;
@@ -110,70 +142,22 @@
         }
         .btn-gold:hover { transform: scale(1.05); }
 
-        /* 게임 화면 스타일 */
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: rgba(255,255,255,0.1);
-            margin-bottom: 30px;
-            border-radius: 2px;
-        }
-        .progress-fill {
-            height: 100%;
-            background: var(--main-gold);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        .question-text {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 30px;
-            line-height: 1.5;
-            min-height: 80px;
-        }
-        .choice-btn {
-            width: 100%;
-            background: var(--btn-bg);
-            border: 1px solid var(--sub-gold);
-            color: white;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-family: 'Pretendard', sans-serif;
-            transition: all 0.3s;
-            text-align: left;
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-        .choice-btn:hover {
-            background: rgba(241, 229, 172, 0.2);
-            transform: translateX(5px);
-        }
+        /* 게임 화면 */
+        .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); margin-bottom: 30px; border-radius: 2px; }
+        .progress-fill { height: 100%; background: var(--main-gold); width: 0%; transition: width 0.3s ease; }
+        .question-text { font-size: 1.3rem; font-weight: bold; margin-bottom: 30px; line-height: 1.5; min-height: 80px; }
+        .choice-btn { width: 100%; background: var(--btn-bg); border: 1px solid var(--sub-gold); color: white; padding: 15px; margin-bottom: 12px; border-radius: 10px; cursor: pointer; font-family: 'Pretendard', sans-serif; transition: all 0.3s; text-align: left; font-size: 1rem; line-height: 1.4; }
+        .choice-btn:hover { background: rgba(241, 229, 172, 0.2); transform: translateX(5px); }
 
-        /* 결과 화면 스타일 */
-        .result-card {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--sub-gold);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        .result-img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
-            margin: 20px 0;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
+        /* 결과 화면 */
+        .result-card { background: rgba(0, 0, 0, 0.3); border: 1px solid var(--sub-gold); padding: 20px; border-radius: 15px; text-align: center; width: 100%; margin-bottom: 20px; }
+        .result-img { width: 100%; max-width: 300px; border-radius: 10px; margin: 20px 0; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
         .result-title { color: var(--main-gold); font-size: 1.5rem; margin-bottom: 10px; }
         .result-name { font-family: 'RoyalTitle', serif; font-size: 2rem; font-weight: bold; margin-bottom: 20px; }
         .result-quote { font-family: 'RoyalTitle', serif; font-style: italic; color: #ccc; margin-bottom: 20px; padding: 10px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
         .share-btn { background: #1DA1F2; color: white; border: none; padding: 12px 25px; border-radius: 20px; cursor: pointer; font-size: 1rem; margin: 5px; font-family: 'Pretendard', sans-serif; }
         
-        .music-control { position: absolute; top: 20px; right: 20px; font-size: 24px; cursor: pointer; z-index: 10; }
+        .music-control { position: absolute; top: 20px; right: 20px; font-size: 24px; cursor: pointer; z-index: 200; }
     </style>
 </head>
 <body>
@@ -184,12 +168,14 @@
     <div class="container">
         <div class="music-control" onclick="toggleMusic()">🔊</div>
 
+        <img src="./images/logo.png" alt="타이틀 로고" id="main-logo">
+
         <section id="intro" class="active">
-            <img src="./images/invitationcard.jpg" alt="NCT WISH 초대장" class="intro-img" onclick="goToName()">
-            <button class="btn-gold" onclick="goToName()">초대장 열기</button>
+            <img src="./images/invitationcard.jpg" alt="NCT WISH 초대장" class="intro-img" onclick="triggerLogoAnimation()">
+            <button class="btn-gold" onclick="triggerLogoAnimation()">초대장 열기</button>
         </section>
 
-        <section id="name-input" class="fade-in">
+        <section id="name-input" class="fade-in content-with-logo">
             <h2 style="margin-bottom: 30px; font-weight: normal; font-family:'RoyalTitle', serif;">입장하시겠습니까?</h2>
             <p>초대장에 적힌 이름을 알려주세요.</p>
             <input type="text" id="username" placeholder="시즈니" maxlength="5">
@@ -197,18 +183,18 @@
             <button class="btn-gold" onclick="startGame()">연회장 입장하기</button>
         </section>
 
-        <section id="game" class="fade-in">
+        <section id="game" class="fade-in content-with-logo">
             <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
             <div class="question-text" id="q-text">질문</div>
             <div id="choices-area"></div>
         </section>
 
-        <section id="loading" class="fade-in">
+        <section id="loading" class="fade-in content-with-logo">
             <div style="font-size: 3rem; animation: float 1s infinite;">🔮</div>
             <p style="margin-top: 20px; font-size: 1.2rem;">별들이 운명을 점치고 있습니다...</p>
         </section>
 
-        <section id="result" class="fade-in">
+        <section id="result" class="fade-in content-with-logo">
             <div class="result-card">
                 <div class="result-title" id="r-title"></div>
                 <div class="result-name" id="r-name"></div>
@@ -222,7 +208,7 @@
     </div>
 
     <script>
-        // --- 질문 데이터 (나머지 질문들도 여기에 복사해서 넣으세요!) ---
+        // --- 데이터 ---
         const questions = [
             { q: "Q1. 옥좌 근처에서 당신을 바라보는 사람은?", a: [
                 { text: "여유롭게 샴페인 잔을 들어 올리는 제국의 황태자", target: "sion" },
@@ -275,9 +261,25 @@
             else { bgm.pause(); document.querySelector('.music-control').innerText = '🔇'; }
         }
 
-        function goToName() {
+        // --- NEW: 로고 애니메이션 로직 ---
+        function triggerLogoAnimation() {
+            // 1. 음악 재생
             document.getElementById('bgm').play().catch(e => console.log("자동재생 차단됨"));
-            showSection('name-input'); // 이제 이 ID가 존재하므로 작동합니다!
+            
+            // 2. 인트로(초대장) 숨기기
+            document.getElementById('intro').classList.remove('active');
+
+            // 3. 로고를 화면 중앙에 등장시키기
+            const logo = document.getElementById('main-logo');
+            logo.classList.add('center'); // 중앙 위치 클래스 추가
+
+            // 4. 1.5초 뒤에 로고를 위로 올리고, 이름 입력창 띄우기
+            setTimeout(() => {
+                logo.classList.remove('center');
+                logo.classList.add('top'); // 상단 위치 클래스로 변경 (스르륵 이동함)
+                
+                showSection('name-input'); // 이름 입력창 등장
+            }, 1500); // 1500ms = 1.5초 대기
         }
 
         function startGame() {
@@ -338,7 +340,7 @@
             document.getElementById('r-quote').innerText = `"${data.quote}"`;
             document.getElementById('r-desc').innerText = data.desc;
             
-            // 이미지 경로 확인 (./images/sion.jpg 이런 식이어야 함)
+            // 이미지 경로 주석 풀고 사용하세요
             // document.getElementById('r-img').src = "./images/" + data.img; 
 
             showSection('result');
