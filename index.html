@@ -680,7 +680,7 @@ body::before {
             const area = document.getElementById('choices-area');
             area.innerHTML = '';
             
-            const shuffledAnswers = shuffleArray([…q.a]);
+            const shuffledAnswers = shuffleArray([...q.a]);
             
             shuffledAnswers.forEach(choice => {
                 const btn = document.createElement('button');
@@ -731,7 +731,7 @@ body::before {
             setTimeout(() => {
                 clearInterval(interval);
                 showResult();
-            }, 1300);
+            }, 13000);
         }
 
         let currentResultData = null; 
@@ -826,4 +826,5 @@ body::before {
     </script>
 </body>
 </html>
+
 
