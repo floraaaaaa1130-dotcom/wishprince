@@ -342,7 +342,7 @@ body::before {
     position: relative;
 
    /* ★ [추가] 줄 간격 설정 (숫자를 조절해보세요!) */
-    line-height: 2.0;
+    line-height: 1.8;
             
 /* 스크롤 필요시 */
     max-height: 70vh;
@@ -807,8 +807,8 @@ body::before {
             document.getElementById('r-title').innerText = data.title;
             // [수정] 이름 적용
             document.getElementById('r-name').innerHTML = resolveKorean(data.name, username);
-            // [수정] 명대사 적용 (이름 변환)
-            document.getElementById('r-quote').innerHTML = `"${resolveKorean(data.quote, username)}"`;
+            // [수정] 명대사 적용 (이름 변환) - 앞뒤 따옴표 삭제!
+            document.getElementById('r-quote').innerHTML = resolveKorean(data.quote, username);
             // [수정] 본문 적용 (이름 변환)
             document.getElementById('r-desc').innerHTML = resolveKorean(data.desc, username);
             // ★ [추가할 코드] 봉투 색상을 멤버 고유색(data.color)으로 변경!
@@ -867,6 +867,7 @@ body::before {
     </script>
 </body>
 </html>
+
 
 
 
