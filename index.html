@@ -237,19 +237,23 @@ body::before {
     font-family: 'RoyalTitle', serif;
     font-size: 1.2rem;
 }
-        /* [수정] 설명글 스타일: 왼쪽 정렬하되 제목(b태그)은 가운데로 */
+        /* [수정] 설명글 스타일 */
         #r-desc {
             line-height: 1.6; 
             
-            /* [수정] keep-all(단어끊기 금지)을 break-all(글자단위 끊기)로 변경 */
-            /* 이렇게 해야 양쪽 정렬 시 구멍이 숭숭 뚫리지 않아요! */
+            /* 단어를 끊어서라도 줄을 꽉 채움 */
             word-break: break-all; 
             
             font-size: 0.95rem;
-            text-align: justify; /* 양쪽 정렬 */
-            padding: 0 10px;
             
-            /* [추천] 자간을 아주 살짝 좁히면 글이 더 단단해 보입니다 */
+            /* 양쪽 정렬 */
+            text-align: justify; 
+            
+            /* ★ [핵심 추가] 단어 사이가 아니라 '글자 사이'를 벌려서 줄을 맞춤 */
+            /* 이 속성이 있어야 띄어쓰기 구멍이 숭숭 뚫리는 걸 막아줍니다! */
+            text-justify: inter-character; 
+            
+            padding: 0 10px;
             letter-spacing: -0.03em;
         }
         
@@ -871,6 +875,7 @@ body::before {
     </script>
 </body>
 </html>
+
 
 
 
