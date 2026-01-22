@@ -155,15 +155,23 @@ body::before {
         .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); margin-bottom: 30px; border-radius: 2px; }
         .progress-fill { height: 100%; background: var(--main-gold); width: 0%; transition: width 0.3s ease; }
         
-        .question-text {
-    /* 텍스트에 금색 그라데이션 적용 (webkit 브라우저용) */
-    background: linear-gradient(to bottom, #fff 0%, #f1e5ac 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
-    /* 텍스트 그림자 */
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
+        .question-text { 
+            font-family: 'CleanBody', serif; 
+            font-size: 1.25rem; 
+            font-weight: bold; 
+            
+            /* [수정] 간격을 25px -> 50px로 늘림 */
+            margin-bottom: 50px; 
+            
+            line-height: 1.5; 
+            min-height: 70px;
+            
+            /* (기존 폰트 효과 유지) */
+            background: linear-gradient(to bottom, #fff 0%, #f1e5ac 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
         
 .choice-btn {
     width: 100%;
@@ -374,6 +382,20 @@ body::before {
             font-family: 'RoyalTitle', serif;
             margin-bottom: 20px;
             font-size: 1.5rem;
+        }
+
+        /* [NEW] 로딩 멘트 스타일 (질문지 폰트 효과 적용) */
+        #loading-text {
+            font-family: 'CleanBody', serif; 
+            font-size: 1.3rem; /* 글자 크기 살짝 키움 */
+            font-weight: bold;
+            margin-top: 30px;
+            
+            /* 질문지와 동일한 금색 효과 */
+            background: linear-gradient(to bottom, #fff 0%, #f1e5ac 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
     </style>
@@ -828,6 +850,7 @@ body::before {
     </script>
 </body>
 </html>
+
 
 
 
