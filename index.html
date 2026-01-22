@@ -443,6 +443,48 @@ body::before {
     <audio id="sfx-mystic" preload="auto"><source src="./sounds/mystic.mp3" type="audio/mp3"></audio>
     <audio id="sfx-result" preload="auto"><source src="./sounds/tada.mp3" type="audio/mp3"></audio>
 
+    <div id="notice-modal" class="open"> 
+        <div class="letter-paper" style="text-align: center; padding: 40px 25px; max-width: 380px;">
+            <h3 style="font-family:'RoyalTitle'; font-size:1.6rem; margin-bottom:25px; color:#c5a059;">[ 연회장 입장 안내 ]</h3>
+            
+            <div style="font-family: 'CleanBody', serif; line-height: 1.8; font-size: 1.05rem; word-break: keep-all;">
+                <p style="margin-bottom: 20px;">
+                    가능하다면 <b>Safari / Chrome</b> 등<br>
+                    <span style="color:#d62828;">외부 브라우저</span>로 입장해주세요.
+                </p>
+
+                <p style="color:#c5a059; margin-bottom: 20px;">❖</p>
+
+                <p style="margin-bottom: 20px;">
+                    왕국 최고의 악단이 연주 중입니다. 🎻<br>
+                    <b>이어폰을 착용</b>하시면<br>
+                    더 깊게 몰입할 수 있습니다.
+                </p>
+
+                <p style="color:#c5a059; margin-bottom: 20px;">❖</p>
+
+                <p style="margin-bottom: 20px;">
+                    공주님, 부디 현실은 잠시 잊으시고<br>
+                    <b>이 세계관에 푹 빠져서</b> 즐겨주세요.
+                </p>
+
+                <p style="color:#c5a059; margin-bottom: 20px;">❖</p>
+
+                <p style="margin-bottom: 30px;">
+                    운명을 믿으세요.<br>
+                    지금 이 순간만큼은 최애를 떠올리기보다,<br>
+                    <b>심장이 반응하는 선택지</b>를 골라주세요.
+                </p>
+            </div>
+
+            <button class="btn-gold" onclick="document.getElementById('notice-modal').classList.remove('open')" style="margin-top:10px; padding: 10px 30px; font-size: 1rem;">입장하기</button>
+        </div>
+    </div>
+
+            <button class="btn-gold" onclick="document.getElementById('notice-modal').classList.remove('open')">확인했습니다</button>
+        </div>
+    </div>
+
     <div class="container">
         <div class="music-control" onclick="toggleMusic()">🔊</div>
 
@@ -887,6 +929,7 @@ body::before {
     </script>
 </body>
 </html>
+
 
 
 
