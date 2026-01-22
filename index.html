@@ -859,7 +859,32 @@ body::before {
             const rName = document.getElementById('r-name').innerText;
             const text = `[운명의 왕자님 찾기]\n나의 정혼자는 '${rName}'입니다!\n공주님도 당신의 왕자님을 찾아보세요 👑\n#NCTWISH #엔시티위시 #팬미팅 #테스트`;
             const url = window.location.href;
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
+            
+            // 텍스트와 URL을 인터넷 주소용으로 변환
+            const encodedText = encodeURIComponent(text);
+            const encodedUrl = encodeURIComponent(url);
+            
+            // 1. 모바일 앱 전용 주소 (twitter://) -> 이게 있어야 앱이 바로 켜짐!
+            const appUrl = `twitter://post?message=${encodedText}%0A${encodedUrl}`;
+            
+            // 2. 웹 브라우저용 주소 (https://) -> PC거나 앱이 없을 때
+            const webUrl = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
+
+            // 지금 접속한 게 모바일인지 확인
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                // 모바일이면: 앱으로 연결 시도
+                window.location.href = appUrl;
+                
+                // (혹시 앱이 안 깔려있을 때를 대비해 0.5초 뒤에 웹으로 연결하는 안전장치)
+                setTimeout(() => {
+                    window.open(webUrl, '_blank');
+                }, 500);
+            } else {
+                // PC면: 바로 새 창으로 웹 연결
+                window.open(webUrl, '_blank');
+            }
         }
 
         // [NEW] 크레딧 모달 열기/닫기 함수
@@ -887,5 +912,6 @@ body::before {
     </script>
 </body>
 </html>
+
 
 
