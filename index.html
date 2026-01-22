@@ -301,15 +301,22 @@ body::before {
         }
         .envelope-area:hover { transform: scale(1.02); background: rgba(255, 255, 255, 0.1); }
         
+        /* [수정] 편지 봉투 아이콘 스타일 */
         .envelope-icon {
-            width: 40px; height: 30px; background: #e0d0a0;
+            width: 40px; height: 30px; 
+            /* 기본색은 금색, JS에서 --env-color가 들어오면 그 색으로 변경 */
+            background: var(--env-color, #e0d0a0); 
             position: relative; border-radius: 3px;
             display: flex; align-items: center; justify-content: center;
+            transition: background 0.3s; /* 색깔이 부드럽게 바뀌도록 */
         }
+        
         .envelope-icon::before {
             content: ''; position: absolute; top: 0; left: 0; width: 0; height: 0;
             border-left: 20px solid transparent; border-right: 20px solid transparent;
-            border-top: 15px solid #c9b57c;
+            /* 뚜껑 부분은 몸통 색보다 살짝 어둡게 자동 처리 (filter 사용) */
+            border-top: 15px solid var(--env-color, #c9b57c);
+            filter: brightness(0.85); 
         }
         .wax-seal {
             width: 16px; height: 16px; border-radius: 50%;
@@ -796,6 +803,8 @@ body::before {
             document.getElementById('r-quote').innerHTML = `"${resolveKorean(data.quote, username)}"`;
             // [수정] 본문 적용 (이름 변환)
             document.getElementById('r-desc').innerHTML = resolveKorean(data.desc, username);
+            // ★ [추가할 코드] 봉투 색상을 멤버 고유색(data.color)으로 변경!
+            document.querySelector('.envelope-icon').style.setProperty('--env-color', data.color);
             
             document.getElementById('r-img').src = "./images/" + data.img; 
 
@@ -850,6 +859,7 @@ body::before {
     </script>
 </body>
 </html>
+
 
 
 
